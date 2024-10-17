@@ -49,19 +49,21 @@ up_animation = generate_animation(MODE.UP.value)
 
 # TRANSITION TABLE
 #
-# +------------------+-------------+---------+-----------+----------+-----------+
-# |      STATE       | DO NOTHING  | UP_KEY  | DOWN_KEY  | LEFT_KEY | RIGHT_KEY |
-# +------------------+-------------+---------+-----------+----------+-----------+
-# |      idle        |    idle     | up_anim | down_anim | left_anim| right_anim|
-# +------------------+-------------+---------+-----------+----------+-----------+
-# |  left_animation  |    idle     | up_anim | down_anim | left_anim| right_anim|
-# +------------------+-------------+---------+-----------+----------+-----------+
-# | right_animation  |    idle     | up_anim | down_anim | left_anim| right_anim|
-# +------------------+-------------+---------+-----------+----------+-----------+
-# |  up_animation    |    idle     | up_anim | down_anim | left_anim| right_anim|
-# +------------------+-------------+---------+-----------+----------+-----------+
-# | down_animation   |    idle     | up_anim | down_anim | left_anim| right_anim|
-# +------------------+-------------+---------+-----------+----------+-----------+
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# |      STATE       | DO NOTHING  | UP_KEY  | DOWN_KEY  | LEFT_KEY | RIGHT_KEY |   Q_KEY   |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# |      idle        |    idle     | up_anim | down_anim | left_anim| right_anim| quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# |  left_animation  |    idle     | up_anim | down_anim | left_anim| right_anim| quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# | right_animation  |    idle     | up_anim | down_anim | left_anim| right_anim| quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# |  up_animation    |    idle     | up_anim | down_anim | left_anim| right_anim| quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# | down_animation   |    idle     | up_anim | down_anim | left_anim| right_anim| quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
+# |   quit_game      | quit_game   | quit_game| quit_game| quit_game| quit_game | quit_game |
+# +------------------+-------------+---------+-----------+----------+-----------+-----------+
 
 
 #SIMPLIFIED TRANSITION TABLE
@@ -107,6 +109,8 @@ while running:
             if event.key == pygame.K_UP:
                 key_press_indicator = up_key
                 current_state = transition_table[pygame.K_UP]
+            if event.key == pygame.K_q:
+                running = False
 
         # GET TRANSITION FOR DO NOTHING
         if True not in pygame.key.get_pressed():
