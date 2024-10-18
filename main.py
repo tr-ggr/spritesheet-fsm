@@ -86,6 +86,7 @@ class Transition(Enum):
     RIGHT_KEY = 4
     Q_KEY = 5
 
+# transition_table[CURRENT STATE][TRANSITION]
 transition_table = [
 #    DO_NOTHING,   UP_KEY,   DOWN_KEY,   LEFT_KEY,   RIGHT_KEY,      Q_KEY
     [State.IDLE, State.UP, State.DOWN, State.LEFT, State.RIGHT, State.QUIT], # IDLE = 0
@@ -95,6 +96,8 @@ transition_table = [
     [State.IDLE, State.UP, State.DOWN, State.LEFT, State.RIGHT, State.QUIT], # DOWN = 4
     [State.QUIT, State.QUIT, State.QUIT, State.QUIT, State.QUIT, State.QUIT] # QUIT = 5
 ]
+
+
 
 convert_state_to_animation = {
     State.LEFT : left_animation,
@@ -189,7 +192,7 @@ while running:
         
 
     counter += 1
-    clock.tick(25)
+    clock.tick(24)
 
     print(f"Current State: {current_state}")
 
